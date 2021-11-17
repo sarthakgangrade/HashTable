@@ -18,6 +18,17 @@ namespace HashTable
             hash.Add("1", "A random paragraph can also be an excellent way for a writer to tackle writers' block. Writing block can often happen due to being stuck with a current project that the writer is trying to complete. By inserting a completely random paragraph from which to begin, it can take down some of the issues that may have been causing the writers' block in the first place.");
             hash.frequencyOfWords("1");
             Console.ReadLine();
+            string paragraph = "A random paragraph can also be an excellent way for a writer to tackle writers' block. Writing block can often happen due to being stuck with a current project that the writer is trying to complete. By inserting a completely random paragraph from which to begin, it can take down some of the issues that may have been causing the writers' block in the first place.";
+            string[] para = paragraph.Split(',');
+            MyMapNode<int, string> hash1 = new MyMapNode<int, string>(para.Length);
+            int key = 0;
+            foreach (string word in para)
+            {
+                hash1.Add(key, word);
+                key++;
+            }
+
+            hash.Remove(hash1, "avoidable");
         }
     }
 
@@ -50,7 +61,7 @@ namespace HashTable
                     foundItem = item;
                     string str = foundItem.Value.ToString();
                     Console.WriteLine("found data = " + str);
-                    string[] arr = str.Split(' ');
+                    string[] arr = str.Split(',');
                     Dictionary<string, int> dict = new Dictionary<string, int>();
                     for (int i = 0; i < arr.Length; i++)
                     {
@@ -68,6 +79,17 @@ namespace HashTable
                         Console.WriteLine(entry.Key + " - " +
                                           entry.Value);
                     }
+                }
+            }
+        }
+        public void Remove(MyMapNode<int, string> hash, string word)
+        {
+            for (int key = 0; key < hash.size; key++)
+            {
+                if (hash.Get(key).Equals(word))
+                {
+                    hash.Remove(key);
+                    Console.WriteLine("Removed " + word + " from paragraph");
                 }
             }
         }
