@@ -11,10 +11,15 @@ namespace HashTable
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!WELCOME TO HASHTABLE");
-            Console.WriteLine("Hash table demo"); //() []
+
+            Console.WriteLine("HASHTABLE demo"); //() []
             MyMapNode<string, string> hash = new MyMapNode<string, string>(5);
             hash.Add("0", "To be or not to be");
             hash.frequencyOfWords("0");
+            hash.Add("1", "A random paragraph can also be an excellent way for a writer to tackle writers' block. Writing block can often happen due to being stuck with a current project that the writer is trying to complete. By inserting a completely random paragraph from which to begin, it can take down some of the issues that may have been causing the writers' block in the first place.");
+            hash.frequencyOfWords("1");
+            Console.ReadLine();
+
         }
     }
 
@@ -35,9 +40,8 @@ namespace HashTable
             KeyValue<K, V> item = new KeyValue<K, V>() { Key = key, Value = value };
             linkedList.AddLast(item);
         }
-#pragma warning disable IDE1006 // Naming Styles
+
         public void frequencyOfWords(K key)
-#pragma warning restore IDE1006 // Naming Styles
         {
             int position = GetArrayPosition(key);
             LinkedList<KeyValue<K, V>> linkedList = GetLinkedList(position);
@@ -49,7 +53,8 @@ namespace HashTable
                     foundItem = item;
                     string str = foundItem.Value.ToString();
                     Console.WriteLine("found data = " + str);
-                    string[] arr = str.Split(',');
+
+                    string[] arr = str.Split(' ');
                     Dictionary<string, int> dict = new Dictionary<string, int>();
                     for (int i = 0; i < arr.Length; i++)
                     {
@@ -66,7 +71,7 @@ namespace HashTable
                     {
                         Console.WriteLine(entry.Key + " - " +
                                           entry.Value);
-                        Console.ReadLine();
+
                     }
                 }
             }
@@ -107,17 +112,17 @@ namespace HashTable
 
         protected int GetArrayPosition(K key)
         {
-            //Console.WriteLine("position given by gethashcode method " + key.GetHashCode());
+
+            Console.WriteLine("position given by gethashcode method " + key.GetHashCode());
 
             int position = key.GetHashCode() % size;
-            //  Console.WriteLine("position given by gethashcode method "+position);
+            Console.WriteLine("position given by gethashcode method " + position);
             return Math.Abs(position);
         }
 
         protected LinkedList<KeyValue<K, V>> GetLinkedList(int position)
         {
-            LinkedList<KeyValue<K, V>> linkedList = items[position];
-            if (linkedList == null)
+            LinkedList<KeyValue<K, V>> linkedList = items[position];            if (linkedList == null)
             {
                 linkedList = new LinkedList<KeyValue<K, V>>();
                 items[position] = linkedList;
