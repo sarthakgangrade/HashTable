@@ -11,6 +11,7 @@ namespace HashTable
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!WELCOME TO HASHTABLE");
+
             Console.WriteLine("HASHTABLE demo"); //() []
             MyMapNode<string, string> hash = new MyMapNode<string, string>(5);
             hash.Add("0", "To be or not to be");
@@ -18,6 +19,7 @@ namespace HashTable
             hash.Add("1", "A random paragraph can also be an excellent way for a writer to tackle writers' block. Writing block can often happen due to being stuck with a current project that the writer is trying to complete. By inserting a completely random paragraph from which to begin, it can take down some of the issues that may have been causing the writers' block in the first place.");
             hash.frequencyOfWords("1");
             Console.ReadLine();
+
         }
     }
 
@@ -38,6 +40,7 @@ namespace HashTable
             KeyValue<K, V> item = new KeyValue<K, V>() { Key = key, Value = value };
             linkedList.AddLast(item);
         }
+
         public void frequencyOfWords(K key)
         {
             int position = GetArrayPosition(key);
@@ -50,6 +53,7 @@ namespace HashTable
                     foundItem = item;
                     string str = foundItem.Value.ToString();
                     Console.WriteLine("found data = " + str);
+
                     string[] arr = str.Split(' ');
                     Dictionary<string, int> dict = new Dictionary<string, int>();
                     for (int i = 0; i < arr.Length; i++)
@@ -67,6 +71,7 @@ namespace HashTable
                     {
                         Console.WriteLine(entry.Key + " - " +
                                           entry.Value);
+
                     }
                 }
             }
@@ -107,6 +112,7 @@ namespace HashTable
 
         protected int GetArrayPosition(K key)
         {
+
             Console.WriteLine("position given by gethashcode method " + key.GetHashCode());
 
             int position = key.GetHashCode() % size;
@@ -116,8 +122,7 @@ namespace HashTable
 
         protected LinkedList<KeyValue<K, V>> GetLinkedList(int position)
         {
-            LinkedList<KeyValue<K, V>> linkedList = items[position];
-            if (linkedList == null)
+            LinkedList<KeyValue<K, V>> linkedList = items[position];            if (linkedList == null)
             {
                 linkedList = new LinkedList<KeyValue<K, V>>();
                 items[position] = linkedList;
